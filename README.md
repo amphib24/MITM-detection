@@ -51,7 +51,7 @@ ARP Spoofing -> Traffic Interception -> DNS Spoofing -> Victim Redirect -> SSL S
 ## DNS Spoofing
 Analysis of the DNS traffic revealed multiple IOA's consistent with DNS spoofing as part of a broader MITM attack, including:
 
-   - DNS responses originating from 192.168.10.55 instead of 8.8.8.8
+   - DNS responses originating from `192.168.10.55` instead of `8.8.8.8`
    - Suspiciously low TTL values
    - Consistent targeting of the internal login domain
 #### Technical Analysis 
