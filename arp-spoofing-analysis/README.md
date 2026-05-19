@@ -8,7 +8,7 @@ This technique is commonly used in Man-in-the-Middle (MITM) attacks to intercept
 ## Scenario 
  
 &nbsp;&nbsp;&nbsp; This investigation is based off the MITM Detection labs from TryHackMe's SOC 1 learning path. The challenge involves locating activity associated with a MITM attack inside a corporate LAN environment.
-The lab provided a gateway IP of 192.168.10.1 which is a router, a domain of corp-login.acme-corp.local, as well as the packet capture (pcap) file.
+The lab provided a gateway IP of `192.168.10.1` which is a router, a domain of `corp-login.acme-corp.local`, as well as the packet capture (pcap) file.
 
 The investigation is focused on identifying evidence of:
   - ARP Spoofing
@@ -54,8 +54,8 @@ I began by filtering ARP traffic within the packet capture to ID abnormal ARP be
    - arp.opcode == 2 && arp.src.proto_ipv4 == 192.168.10.1, this isolated the traffic to ARP responses associated with the gateway IP address.
 
 #### Analyst Observation:
-   - Most responses mapped the gateway IP address (192.168.10.1) to the MAC address 02:aa:bb:cc:00:01 which appeared normal.
-   - However, the additional responses associated with the same IP address mapped to 02:fe:fe:fe:55:55. This is suspicious because the presence of
+   - Most responses mapped the gateway IP address `192.168.10.1` to the MAC address `02:aa:bb:cc:00:01` which appeared normal.
+   - However, the additional responses associated with the same IP address mapped to `02:fe:fe:fe:55:55`. This is suspicious because the presence of
      multiple MAC addresses associated with the gateway IP strongly suggest ARP spoofing activity. This behavior suggests an attacker-controlled
      device was attempting to impersonate the gateway in order to intercept or redirect traffic. 
 
