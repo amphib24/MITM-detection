@@ -25,11 +25,11 @@ credential interception.
 
 # Environment Overview
 
-   - Gateway IP: 192.168.10.1
-   - Suspected Malicious Host: 192.168.10.55
+   - Gateway IP: `192.168.10.1`
+   - Suspected Malicious Host: `192.168.10.55`
    - Target Domain: corp-login.acme-corp.local
    - Analysis Tool Used: Wireshark
-   - Data Source: network-traffic.pcap
+   - Data Source: `network-traffic.pcap`
 
  # Attack Chain Overview
 
@@ -44,7 +44,7 @@ ARP Spoofing -> Traffic Interception -> DNS Spoofing -> Victim Redirect -> SSL S
  - Duplicate IP-to-MAC mappings
  - Gateway impersonation attempts
  - Duplicate address detection alerts These findings strongly suggest that an attacker manipulated ARP traffic in order to impersonate the gateway and intercept network traffic as part of a MITM attack.
- - Suspicious MAC address 02:fe:fe:fe:55
+ - Suspicious MAC address `02:fe:fe:fe:55`
 #### Technical Analysis 
 <a href = https://github.com/amphib24/MITM-detection/tree/main/arp-spoofing-analysis>Analysis</a>
 
