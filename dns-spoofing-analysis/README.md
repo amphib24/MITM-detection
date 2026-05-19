@@ -9,7 +9,7 @@ traffic.
 ## Scenario
 
 &nbsp;&nbsp;&nbsp; This investigation is based off the MITM Detection labs from TryHackMe's SOC 1 learning path. The challenge involves locating activity associated with a MITM attack inside a corporate LAN environment.
-The lab provided a gateway IP of 192.168.10.1 which is a router, a domain of corp-login.acme-corp.local, as well as the packet capture (pcap) file.
+The lab provided a gateway IP of `192.168.10.1` which is a router, a domain of `corp-login.acme-corp.local`, as well as the packet capture (pcap) file.
 
 The investigation is focused on identifying evidence of:
   - ARP Spoofing
@@ -42,7 +42,7 @@ I began by filtering DNS traffic within the packet capture to ID traffic specifi
    - dns.flags.response == 1 && ip.src == 8.8.8.8, this allowed me to filter out traffic based on legitimate DNS responses from a known resolver.
 
 #### Analyst Observation:
-   - Responses from 8.8.8.8 showed consistent TTL values and expected resolution behavior, which provided a baseline for normal DNS activity.
+   - Responses from `8.8.8.8` showed consistent TTL values and expected resolution behavior, which provided a baseline for normal DNS activity.
 
 <img width="1852" height="857" alt="dns_respsonse_by_ip_filter" src="https://github.com/user-attachments/assets/735a5107-f4c6-48c0-a877-7e3f4a1d6e07" />
 
@@ -62,10 +62,10 @@ I began by filtering DNS traffic within the packet capture to ID traffic specifi
 
 #### Analyst Observation
    - Two suspicious DNS responses were identified:
-       - Packet 1124: has a Source IP of 192.168.10.55 with a TTL of 30 seconds
-       - Packet 2239: has a Source IP of 192.168.10.55 with a TTL of 25 seconds
-   - These responses originated from an unexpected internal host rather than the legitimate DNS resolver of 8.8.8.8 and had significantly lower TTL values. The combination
-     of DNS responses from an unauthorized source, abnormally low TTL values, and targeting of the corp-login.acme-corp.local domain, strongly suggests DNS spoofing activity within
+       - Packet 1124: has a Source IP of `192.168.10.55` with a TTL of 30 seconds
+       - Packet 2239: has a Source IP of `192.168.10.55` with a TTL of 25 seconds
+   - These responses originated from an unexpected internal host rather than the legitimate DNS resolver of `8.8.8.8` and had significantly lower TTL values. The combination
+     of DNS responses from an unauthorized source, abnormally low TTL values, and targeting of the `corp-login.acme-corp.local` domain, strongly suggests DNS spoofing activity within
      the network, where DNS responses are being manipulated to redirect traffic to an attacker-controlled system.
 
 <img width="1858" height="852" alt="_malicious_ip_results" src="https://github.com/user-attachments/assets/f059002e-6d06-4705-958b-c321c7cf7470" />
@@ -79,7 +79,7 @@ I began by filtering DNS traffic within the packet capture to ID traffic specifi
 Analysis of the DNS traffic revealed multiple IOA's consistent with DNS spoofing as part of a broader MITM attack.
 
 #### Key Indicators
-   - DNS responses originating from 192.168.10.55 instead of 8.8.8.8
+   - DNS responses originating from `192.168.10.55` instead of `8.8.8.8`
    - Suspiciously low TTL values
    - Consistent targeting of the internal login domain
 
