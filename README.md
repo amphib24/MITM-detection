@@ -44,7 +44,7 @@ ARP Spoofing -> Traffic Interception -> DNS Spoofing -> Victim Redirect -> SSL S
  - Duplicate IP-to-MAC mappings
  - Gateway impersonation attempts
  - Duplicate address detection alerts These findings strongly suggest that an attacker manipulated ARP traffic in order to impersonate the gateway and intercept network traffic as part of a MITM attack.
- - Suspicious MAC address `02:fe:fe:fe:55`
+ - Suspicious MAC address `02:fe:fe:fe:55:55`
 #### Technical Analysis 
 <a href = https://github.com/amphib24/MITM-detection/tree/main/arp-spoofing-analysis>Analysis</a>
 
